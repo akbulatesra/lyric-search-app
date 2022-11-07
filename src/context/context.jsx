@@ -2,6 +2,7 @@ import React, {
   createContext,
   useContext,
   useState,
+  useEffect,
 } from "react";
 import tracksData from "../utils/data";
 
@@ -10,27 +11,27 @@ export const Context = createContext();
 export const ContextProvider = ({ children }) => {
   const [trackList, setTrackList] = useState([]);
 
-  useEffect(() => {
-    let ignore = false;
+  // useEffect(() => {
+  //   let ignore = false;
 
-    async function fetchTrackList() {
-      const { data, error } = await tracksData();
-      if (data) setTrackList(data);
-    }
-    if (!ignore) fetchTrackList();
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  //   async function fetchTrackList() {
+  //     const { data, error } = await tracksData();
+  //     if (data) setTrackList(data);
+  //   }
+  //   if (!ignore) fetchTrackList();
+  //   return () => {
+  //     ignore = true;
+  //   };
+  // }, []);
 
   const heading = "Top 10 Tracks";
-  const values = {
-    trackList,
-    setTrackList,
-    heading,
-  };
+  // const values = {
+  //   trackList,
+  //   setTrackList,
+  //   heading,
+  // };
   return (
-    <Context.Provider value={values}>
+    <Context.Provider value={heading}>
       {children}
     </Context.Provider>
   );
